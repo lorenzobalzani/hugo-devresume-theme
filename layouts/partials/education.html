@@ -1,16 +1,27 @@
 
-                            <section class="education-section py-3">
+                            <section class="work-section py-3">
 
                                 <h3 class="text-uppercase resume-section-heading mb-4">{{ i18n "education" }}</h3>
 
-                                <ul class="list-unstyled resume-education-list">
-                                    {{ range .Site.Params.education.list }}
-                                    <li class="mb-3">
-                                        <div class="resume-degree font-weight-bold">{{ .degree }}</div>
-                                        <div class="resume-degree-org text-muted">{{ .university }}</div>
-                                        <div class="resume-degree-time text-muted">{{ .dates }}</div>
-                                    </li>
-                                    {{ end }}
-                                </ul>
+                                {{ range .Site.Params.education.list }}
+                                <div class="item mb-3">
+                                    <div class="item-heading row align-items-center mb-2">
+                                        <h4 class="item-title col-8 mb-2 mb-md-0">{{ .degree }}</h4>
+                                        <div class="item-meta col-4 text-right text-muted mb-2 mb-md-0">{{ .location }}</div>
+                                        <div class="col-12 mb-2 mb-md-0"></div>
+                                        <div class="item-meta col-12 col-md-6 col-lg-6 mb-2 mb-md-0">{{ .university }}</div>
+                                        <div class="item-meta col-12 col-md-6 col-lg-6 text-muted text-left text-md-right">{{ .dates }}</div>
+                                    </div>
 
-                            </section><!--//education-section-->
+                                    <div class="item-content">
+                                        <p class="mb-1">{{ with .details }}{{ . | markdownify }}{{ end }}</p>
+                                        <ul class="resume-list">
+                                            {{ range .items }}
+                                            <li>{{ with .details }}{{ . | markdownify }}{{ end }}</li>
+                                            {{ end }}
+                                        </ul>
+                                    </div>
+                                </div><!--//item-->
+                                {{ end }}
+
+                            </section><!--//work-section-->
